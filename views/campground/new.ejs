@@ -39,7 +39,7 @@
         <div class="mb-3 input-group">
           <input
             type="file"
-            class="d-none form-control rounded-start"
+            style="position: absolute; width: 0; height: 0; overflow: hidden; opacity: 0;"
             id="image"
             name="image"
             multiple
@@ -50,13 +50,12 @@
             id="fileNameDisplay"
             readonly
           />
-          <button
+          <label
             class="btn btn-light border"
-            type="button"
-            onclick="document.getElementById('image').click()"
+            for="image"
           >
             Choose Files
-          </button>
+          </label>
         </div>
         <!-- <input
           type="text"
