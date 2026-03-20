@@ -118,15 +118,33 @@ store.on("error", function (e) {
     console.log("SESSION STORE ERROR", e)
 })
 
+// const sessionConfig = {
+//     store: store,
+//     name: 'session',
+//     secret: 'thisshouldbeabettersecret',
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {
+//         httpOnly: true,
+//         secure: process.env.NODE_ENV === 'production',
+
+//         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+//         maxAge: 1000 * 60 * 60 * 24 * 7
+//     }
+// }
 const sessionConfig = {
     store: store,
     name: 'session',
-    secret: 'thisshouldbeabettersecret',
+    secret: 'thisshouldbeabettersecret', // Reminder: Use an environment variable here!
     resave: false,
     saveUninitialized: true,
+    proxy: true, // <--- ADD THIS LINE
     cookie: {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        // Ensure this is true on Vercel
+        secure: true,
+        // Recommended for modern Chrome/Safari redirects
+        sameSite: 'lax',
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
