@@ -44,7 +44,7 @@ db.once("open", () => {
 const app = express();
 
 app.engine('ejs', ejsmate)
-
+app.set('trust proxy', 1);
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 
@@ -121,7 +121,7 @@ store.on("error", function (e) {
 const sessionConfig = {
     store: store,
     name: 'session',
-    secret: process.env.SESSION_SECRET || 'thisshouldbeabettersecret',
+    secret: 'thisshouldbeabettersecret',
     resave: false,
     saveUninitialized: true,
     cookie: {
